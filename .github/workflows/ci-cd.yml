@@ -11,6 +11,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      build_path: ./build
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -18,11 +20,11 @@ jobs:
           node-version: 18
       - run: npm install
       - run: npm run build
-      - run: touch build/.nojekyll          # <-- aquí agregas el archivo .nojekyll
+      - run: touch build/.nojekyll          # archivo para evitar uso de Jekyll en GH Pages
       - uses: actions/upload-artifact@v4
         with:
           name: production-files
-          path: ./build
+          path: build
 
   deploy:
     needs: build
@@ -32,8 +34,8 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: production-files
-          path: ./build
+          path: build
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: build
