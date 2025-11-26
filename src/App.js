@@ -130,7 +130,7 @@ export default function App() {
 
       <footer className="header-footer">
         <div className="container">
-          <p className="footer-p">&copy; 2025 Ducati Multistrada. Todos los derechos reservados. Gabriel Reyes - Unidad 2</p>
+          <p className="footer-p">&copy; 2025 Ducati Multistrada. UTEQ . Todos los derechos reservados. Gabriel Reyes - Unidad 2</p>
         </div>
       </footer>
     </>
