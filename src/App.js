@@ -25,7 +25,7 @@ export default function App() {
         <div className="container header-flex">
           <div className="logo-titulo">
             <img
-              src="DucatiLogo.png"
+              src={`${process.env.PUBLIC_URL}/DucatiLogo.png`}
               alt="Logo de Ducati"
               className="logo"
             />
@@ -62,7 +62,7 @@ export default function App() {
             </p>
 
             <img
-              src="ducati1.jpg"
+              src={`${process.env.PUBLIC_URL}/ducati1.jpg`}
               alt="Motocicleta Ducati Multistrada en un camino de montaña al atardecer"
               className="img-responsive"
             />
@@ -80,7 +80,7 @@ export default function App() {
             </p>
 
             <img
-              src="ducati2.jpg"
+              src={`${process.env.PUBLIC_URL}/ducati2.jpg`}
               alt="Motocicleta Ducati Multistrada en un camino de montaña al atardecer"
               className="img-responsive"
             />
@@ -98,7 +98,7 @@ export default function App() {
             </p>
 
             <img
-              src="ducati3.jpg"
+              src={`${process.env.PUBLIC_URL}/ducati3.jpg`}
               alt="Motocicleta Ducati Multistrada en un camino de montaña al atardecer"
               className="img-responsive"
             />
@@ -112,7 +112,7 @@ export default function App() {
             </p>
 
             <img
-              src="DucatiLogo.png"
+              src={`${process.env.PUBLIC_URL}/DucatiLogo.png`}
               alt="Logo de Ducati"
               className="logo-footer"
             />
