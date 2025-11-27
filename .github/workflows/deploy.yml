@@ -20,19 +20,23 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            echo "==> Navegando a la carpeta del deployer"
-            cd /home/deployer/app || exit
+            echo "==> Navegando al repositorio"
+            cd /var/www/evaluacion2 || exit
 
             echo "==> Actualizando repo"
-            echo "git pull origin main"
+            git pull origin main
 
             echo "==> Construyendo imagen Docker"
-            docker build -t ghcr.io/GabrielReyes3/evaluacion2:latest /var/www/evaluacion2
+            docker build -t ghcr.io/gabrielreyes3/evaluacion2:latest .
+
+            echo "==> Copiando archivos de configuración a /home/deployer/app"
+            sudo cp -r app/* /home/deployer/app/ || true
 
             echo "==> Dando permisos de ejecución al script de Blue/Green"
-            chmod +x deploy_blue_green.sh
+            chmod +x /home/deployer/app/deploy_blue_green.sh
 
             echo "==> Ejecutando Blue/Green Deploy"
-            ./deploy_blue_green.sh ghcr.io/GabrielReyes3/evaluacion2:latest
+            cd /home/deployer/app
+            ./deploy_blue_green.sh ghcr.io/gabrielreyes3/evaluacion2:latest
 
-            echo "==> Despliegue completado "
+            echo "==> Despliegue completado"
