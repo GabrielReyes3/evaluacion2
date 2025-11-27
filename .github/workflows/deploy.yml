@@ -24,7 +24,7 @@ jobs:
             cd /home/deployer/app || exit
 
             echo "==> Actualizando repo"
-            git pull origin main
+            echo "git pull origin main"
 
             echo "==> Construyendo imagen Docker"
             docker build -t ghcr.io/GabrielReyes3/evaluacion2:latest /var/www/evaluacion2
