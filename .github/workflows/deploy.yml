@@ -29,8 +29,12 @@ jobs:
             echo "==> Construyendo imagen Docker"
             docker build -t ghcr.io/gabrielreyes3/evaluacion2:latest .
 
-            echo "==> Copiando archivos de configuración a /home/deployer/app"
-            sudo cp -r app/* /home/deployer/app/ || true
+            echo "==> Limpiando carpeta remota"
+            sudo rm -rf /home/deployer/app/*
+            sudo mkdir -p /home/deployer/app
+
+            echo "==> Copiando archivos de configuración"
+            sudo cp -r app/* /home/deployer/app/
 
             echo "==> Dando permisos de ejecución al script de Blue/Green"
             chmod +x /home/deployer/app/deploy_blue_green.sh
