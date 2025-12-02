@@ -51,7 +51,7 @@ export default function App() {
       <main id="contenido">
         <div className="container">
           <section>
-            <h2 className="centered-h2">Ducati MonSTER  Version DOSSS: Aventura sin límites</h2>
+            <h2 className="centered-h2">Ducati MonSTERfefefe  Version DOSSS: Aventura sin límites</h2>
 
             <p className="paragraph">
               La <strong>Ducati Multistrada</strong> es una motocicleta versátil que redefine el concepto de aventura sobre dos ruedas. Diseñada para adaptarse a una amplia variedad de condiciones, esta moto combina potencia, comodidad y tecnología de punta en una experiencia de conducción única. Su ingeniería avanzada y diseño sofisticado convierten cada trayecto en un viaje lleno de emoción y seguridad, ideal para quienes buscan explorar sin restricciones.
