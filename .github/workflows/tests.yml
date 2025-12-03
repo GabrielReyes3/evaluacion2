@@ -1,0 +1,52 @@
+name: Integration Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    name: 🧪 Pruebas de Integración con Supertest
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v4
+      
+      - name: 🟢 Configurar Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      
+      - name: 📦 Instalar dependencias
+        run: npm ci
+      
+      - name: 🧪 Ejecutar pruebas de integración
+        run: npm test
+      
+      - name: 📊 Generar reporte de cobertura
+        run: npm test -- --coverage
+      
+      - name: 💾 Guardar resultados de pruebas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-node-${{ matrix.node-version }}
+          path: |
+            coverage/
+            *.log
+      
+      - name: ✅ Pruebas completadas
+        if: success()
+        run: echo "✅ Todas las pruebas pasaron exitosamente en Node ${{ matrix.node-version }}"
+      
+      - name: ❌ Pruebas fallidas
+        if: failure()
+        run: echo "❌ Las pruebas fallaron en Node ${{ matrix.node-version }}"
